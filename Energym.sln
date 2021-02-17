@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Energym.Android", "Energym\Energym.Android\Energym.Android.csproj", "{C84AD99E-00FA-431A-BA47-10C8FA3FBF5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Energym", "Energym\Energym\Energym.csproj", "{B1AD38CF-B209-4DD2-8D54-8B5E5781432E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C84AD99E-00FA-431A-BA47-10C8FA3FBF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C84AD99E-00FA-431A-BA47-10C8FA3FBF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C84AD99E-00FA-431A-BA47-10C8FA3FBF5E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C84AD99E-00FA-431A-BA47-10C8FA3FBF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C84AD99E-00FA-431A-BA47-10C8FA3FBF5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C84AD99E-00FA-431A-BA47-10C8FA3FBF5E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B1AD38CF-B209-4DD2-8D54-8B5E5781432E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1AD38CF-B209-4DD2-8D54-8B5E5781432E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1AD38CF-B209-4DD2-8D54-8B5E5781432E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B1AD38CF-B209-4DD2-8D54-8B5E5781432E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1AD38CF-B209-4DD2-8D54-8B5E5781432E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1AD38CF-B209-4DD2-8D54-8B5E5781432E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEF8BFE0-147A-4243-92BD-0C9FC246A80C}
+	EndGlobalSection
+EndGlobal
