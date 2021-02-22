@@ -13,6 +13,8 @@ namespace Energym
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+
+            Routing.RegisterRoute(nameof(ClientesMenu), typeof(ClientesMenu));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

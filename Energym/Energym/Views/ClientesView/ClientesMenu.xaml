@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Energym.Views.ClientesMenu">
+    <ContentPage.Content>
+      <StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
+                <Label  Text="Módulo de Clientes" FontSize="Medium" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Button x:Name="btnToClientesRegistrar" Text="Registrar Nuevo" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Button x:Name="btnToClientesModificar" Text="Modificar Existente" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Button  x:Name="btnToClientesRegistrarPago" Text="Registro Pago" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Button Text="Registrar Datos de Seguimiento" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
