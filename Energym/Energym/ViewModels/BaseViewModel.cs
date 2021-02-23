@@ -13,6 +13,7 @@ namespace Energym.ViewModels
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;
+
         public bool IsBusy
         {
             get { return isBusy; }

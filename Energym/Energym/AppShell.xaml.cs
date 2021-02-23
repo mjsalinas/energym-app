@@ -19,5 +19,7 @@ namespace Energym
         {
             await Shell.Current.GoToAsync("//LoginPage");
         }
+       
+
     }
 }
