@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Energym.Views.ClientesView.ClienteView;
 using Energym.Views.ClientesView.RegistroPagosView;
+using Energym.Views.ClientesView.DatosSeguimientoView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -28,7 +29,10 @@ namespace Energym.Views
             {
                 Navigation.PushAsync(new ClientesRegistrarPago());
             };
-
+            btnToDatosSeguimientoRegistro.Clicked += (sender, e) =>
+            {
+                Navigation.PushAsync(new DatosSeguimientoIngresar());
+            };
         }
         //public ToClientesModificar()
         //{

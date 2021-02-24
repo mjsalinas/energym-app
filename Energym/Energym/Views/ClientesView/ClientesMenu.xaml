@@ -17,7 +17,7 @@
                 <Button  x:Name="btnToClientesRegistrarPago" Text="Registro Pago" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
             <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
-                <Button Text="Registrar Datos de Seguimiento" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button x:Name="btnToDatosSeguimientoRegistro" Text="Registrar Datos de Seguimiento" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
         </StackLayout>
   </ContentPage.Content>
