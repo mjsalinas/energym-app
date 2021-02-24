@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Energym.Views.ClientesView.DatosSeguimientoView.DatosSeguimientoIngresar">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Label  Text="Registrar Datos de Seguimiento" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <SearchBar Placeholder="Buscar..." />
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Label  Text="Nombre" HorizontalTextAlignment="Start"/>
+                <Label  Text="Numero" HorizontalTextAlignment="Start"/>
+                <Label  Text="Correo" HorizontalTextAlignment="Start"/>
+                <Label  Text="Estatus" HorizontalTextAlignment="Start"/>
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Picker x:Name="pDatoSeguimiento"
+                    Title="Dato de Seguimiento"
+                    TitleColor="black">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Peso</x:String>
+                            <x:String>Altura</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Picker x:Name="pUnidadMedida"
+                    Title="Unidad de Medida"
+                    TitleColor="black">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>CM.</x:String>
+                            <x:String>M.</x:String>
+                            <x:String>Lbs.</x:String>
+                            <x:String>Kg.</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <DatePicker Format="D" VerticalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
+                <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
+                    <Frame BackgroundColor="AliceBlue" BorderColor="DarkSlateGray" HeightRequest="60" Padding="0">
+                        <Grid Padding="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Margin="10,0,10,0" Text="Peso" VerticalOptions="Center" Grid.Column="0">
+                                <!--<Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="NameSort_Tapped"/>
+                            </Label.GestureRecognizers>-->
+                            </Label>
+                            <Label Margin="10,0,10,0" Text="Altura" VerticalOptions="Center" Grid.Column="1"/>
+                            <Label Margin="10,0,10,0" Text="IMC" VerticalOptions="Center" Grid.Column="2"/>
+                            <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                            <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                            <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                        </Grid>
+                    </Frame>
+
+
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

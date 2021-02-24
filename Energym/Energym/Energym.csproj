@@ -11,6 +11,34 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\ClientesView\ClienteView\ClientesModificar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ClientesView\ClienteView\ClientesRegistro.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ClientesView\DatosSeguimientoView\DatosSeguimientoRegistro.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ClientesView\RegistroPagosView\ClientesRegistrarPago.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TabbedPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\ClientesView\PagosView\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\ClientesView\DatosSeguimientoView\DatosSeguimientoRegistro.xaml.cs">
+      <DependentUpon>DatosSeguimientoRegistro.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\ClientesViews\ClienteView\" />
     <Folder Include="Views\ClientesViews\DatosSeguimientoView\" />
     <Folder Include="Views\ClientesViews\RegistroPagosView\" />
