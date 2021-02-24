@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:Energym.Views"
-       Title="Energym"
-       x:Class="Energym.AppShell">
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Energym.Views" Title="Energym" x:Class="Energym.AppShell">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -70,20 +68,22 @@
     </Shell.Resources>
 
     <!-- 
-        When the Flyout is visible this defines the content to display in the flyout.
-        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
-        https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
+        When the Flyout is visible this defines the content to display in the flyout. FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
     <FlyoutItem Title="Clientes" Icon="icon_about.png">
         <ShellContent Route="ClientesMenu" ContentTemplate="{DataTemplate local:ClientesMenu}" />
     </FlyoutItem>
+    <FlyoutItem Title="About" Icon="icon_about.png">
+        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="About" Icon="icon_about.png">
+        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+    </FlyoutItem>
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    <FlyoutItem Title="Clientes" Route="ItemDetailPage"    Icon="clientes.png" >
-        <!--<Tab Title="Clientese" Icon="clientes.png">
-            --><!-- aqui iria el menu del modulo (el de botones)--><!--
-            <ShellContent  />
-        </Tab>-->
+    </FlyoutItem>
+    <FlyoutItem Title="Clientes" Route="ItemDetailPage" Icon="clientes.png">
+       
         <ShellContent Title="Grupos" Icon ="grupos.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
         <ShellContent Title="Configuraciones" Icon ="configuraciones.png" Route="NewItemPage" ContentTemplate="{DataTemplate local:NewItemPage}" />
         <ShellContent Title="Oportunidades" Icon="oportunidades" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
@@ -91,6 +91,10 @@
     <FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Configuraciones" Icon="IcoConfig.png">
+        <ShellContent Route="ConfiguracionPage" ContentTemplate="{DataTemplate local:ConfiguracionPage}" />
+    </FlyoutItem>
+
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
@@ -102,7 +106,7 @@
         content you can do so by calling 
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    
+
     <TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
