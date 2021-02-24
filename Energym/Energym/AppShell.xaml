@@ -73,6 +73,9 @@
     <FlyoutItem Title="Clientes" Icon="icon_about.png">
         <ShellContent Route="ClientesMenu" ContentTemplate="{DataTemplate local:ClientesMenu}" />
     </FlyoutItem>
+    <FlyoutItem Title="Oportunidades" Icon="icon_about.png">
+        <ShellContent Route="OportunidadesPage" ContentTemplate="{DataTemplate local:OportunidadesPage}" />
+    </FlyoutItem>
     <FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
