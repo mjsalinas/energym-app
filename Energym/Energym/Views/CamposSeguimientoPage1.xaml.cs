@@ -20,10 +20,13 @@ namespace Energym.Views
         public CamposSeguimientoPage1()
         {
             InitializeComponent();
+     
             this.BindingContext = new CamposSeguimientotviewModel();
 
 
         }
+
+       
 
         public void NameSort_Tapped(object sender, EventArgs e)
         {
@@ -62,9 +65,9 @@ namespace Energym.Views
 
         }
 
-        private async void btnCancelar_Clicked(object sender, EventArgs e)
+        private void btnCancelar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ConfiguracionPage());
+     
         }
      }
 

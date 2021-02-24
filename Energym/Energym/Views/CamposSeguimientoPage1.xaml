@@ -6,7 +6,7 @@
 			 mc:Ignorable="d"
              x:Class="Energym.Views.CamposSeguimientoPage1">
 	<StackLayout Padding="10" Spacing="0">
-		<Label Margin="0,0,0,20" FontSize="Large" Text="Configuraciones" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+		<Label Margin="0,0,0,20" FontSize="Large" Text="Campos de Seguimientos" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
 		<Frame BackgroundColor="DeepSkyBlue" BorderColor="DarkBlue" HeightRequest="130" Padding="0">
 			<Grid Padding="0">
