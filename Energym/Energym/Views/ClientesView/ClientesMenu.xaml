@@ -19,6 +19,9 @@
             <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
                 <Button x:Name="btnToDatosSeguimientoRegistro" Text="Registrar Datos de Seguimiento" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Button x:Name="btnToDatosSeguimientoModificar" Text="Modificar Datos de Seguimiento" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
         </StackLayout>
   </ContentPage.Content>
 </ContentPage>

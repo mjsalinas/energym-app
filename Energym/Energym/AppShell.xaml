@@ -76,6 +76,11 @@
         <ShellContent Title="Configuraciones" Icon="IcoConfig.png" Route="ConfiguracionPage" ContentTemplate="{DataTemplate local:ConfiguracionPage}" />
         <ShellContent Title="Oportunidades" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Oportunidades" Icon="icon_about.png">
+        <ShellContent Route="OportunidadesPage" ContentTemplate="{DataTemplate local:OportunidadesPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="About" Icon="icon_about.png">
+        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     <FlyoutItem Title="Grupos" Icon="grupos.png">
         <ShellContent Title="Clientes" Icon="clientes.png" Route="ClientesMenu" ContentTemplate="{DataTemplate local:ClientesMenu}" />
         <ShellContent Title="Grupos" Icon="grupos.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
