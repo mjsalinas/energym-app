@@ -33,6 +33,10 @@ namespace Energym.Views
             {
                 Navigation.PushAsync(new DatosSeguimientoIngresar());
             };
+            btnToDatosSeguimientoModificar.Clicked += (sender, e) =>
+            {
+                Navigation.PushAsync(new DatosSeguimientoModificar());
+            };
         }
         //public ToClientesModificar()
         //{
