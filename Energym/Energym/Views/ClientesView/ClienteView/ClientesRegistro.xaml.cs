@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Energym.ViewModels.ClientesViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace Energym.Views
         public ClientesRegistro()
         {
             InitializeComponent();
+            BindingContext = new RegistrarClienteViewModel();
+
         }
     }
 }

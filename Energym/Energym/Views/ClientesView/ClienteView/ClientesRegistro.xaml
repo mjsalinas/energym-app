@@ -6,10 +6,10 @@
         <StackLayout>
             <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
                 <Label  Text="Crear cliente" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Entry Placeholder="Nombre" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-                <Entry Placeholder="Numero" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+                <Entry Placeholder="Nombre" Text="{Binding Nombre}" FontSize="Medium" />
+                <Entry Placeholder="Numero" Text="{Binding NumeroTelefono}" FontSize="Medium" />
                 <DatePicker Format="D" VerticalOptions="CenterAndExpand" />
-                <Entry Placeholder="Correo" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+                <Entry Placeholder="Correo" Text="{Binding Correo}" FontSize="Medium" />
                 <Picker x:Name="picker"
                     Title="Tipo de Plan"
                     TitleColor="black">
@@ -23,8 +23,8 @@
                 </Picker>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancel" Command="{Binding CancelarCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding RegistrarClienteCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
             <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
                 <Frame BackgroundColor="AliceBlue" BorderColor="DarkSlateGray" HeightRequest="60" Padding="0">
