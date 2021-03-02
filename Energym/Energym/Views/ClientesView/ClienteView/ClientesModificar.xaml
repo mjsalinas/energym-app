@@ -16,34 +16,27 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                    <Grid Padding="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                                        <!--<v:ListViewColumnView Grid.Column="0" BindingContext ="{Binding Item1}"/>-->
-                                        <Label Margin="10,0,10,0" Text="IdCliente" VerticalOptions="Center" Grid.Column="0">
-                            <!--<Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="NameSort_Tapped"/>
-                            </Label.GestureRecognizers>-->
-                        </Label>
-                        <Label Margin="10,0,10,0" Text="Nombre" VerticalOptions="Center" Grid.Column="1"/>
-                        <Label Margin="10,0,10,0" Text="Estatus" VerticalOptions="Center" Grid.Column="2"/>
-                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                    </Grid>
+                                    <Grid Padding="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="10,0,10,0" Text="IdCliente" VerticalOptions="Center" Grid.Column="0"/>
+                                        <Label Margin="10,0,10,0" Text="Nombre" VerticalOptions="Center" Grid.Column="1"/>
+                                        <Label Margin="10,0,10,0" Text="Estatus" VerticalOptions="Center" Grid.Column="2"/>
+                                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                    </Grid>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </Frame>
-
-
             </StackLayout>
             <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
                 <Entry Placeholder="Nombre" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
