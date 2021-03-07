@@ -63,6 +63,9 @@
     <Compile Update="Views\ClientesView\DatosSeguimientoView\DatosSeguimientoRegistro.xaml.cs">
       <DependentUpon>DatosSeguimientoRegistro.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\GruposViews\GruposMenu.xaml.cs">
+      <DependentUpon>GruposMenu.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

@@ -16,6 +16,7 @@ namespace Energym
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(OportunidadesPage), typeof(OportunidadesPage));
             Routing.RegisterRoute(nameof(ClientesMenu), typeof(ClientesMenu));
+            Routing.RegisterRoute(nameof(GruposMenu), typeof(GruposMenu));
 
             //pantallas especificas
             Routing.RegisterRoute(nameof(ClientesRegistro), typeof(ClientesRegistro));

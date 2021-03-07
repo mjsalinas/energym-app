@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Energym.Views.ClientesView.ClienteView;
+using Energym.Views.ClientesView.RegistroPagosView;
+using Energym.Views.ClientesView.DatosSeguimientoView;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace Energym.Views
+{
+    public partial class GruposMenu : ContentPage
+    {
+        public GruposMenu()
+        {
+            InitializeComponent();
+            btnToGruposRegistrar.Clicked += (sender, e) =>
+            {
+                Navigation.PushAsync(new ClientesRegistro());
+            };
+            
+            btnToGruposModificar.Clicked += (sender, e) =>
+            {
+                Navigation.PushAsync(new DatosSeguimientoModificar());
+            };
+        }
+        //public ToClientesModificar()
+        //{
+        //    InitializeComponent();
+        //    btnToClientesRegistrar.Clicked += (sender, e) =>
+        //    {
+        //        Navigation.PushAsync(new ClientesRegistro());
+        //    };
+    }
+}
