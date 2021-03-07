@@ -29,15 +29,9 @@
                 </Picker>
                 <Picker x:Name="pUnidadMedida"
                     Title="Unidad de Medida"
-                    TitleColor="black">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>CM.</x:String>
-                            <x:String>M.</x:String>
-                            <x:String>Lbs.</x:String>
-                            <x:String>Kg.</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
+                    TitleColor="black"
+						ItemsSource = "{Binding UnidadesMedida }" ItemDisplayBinding = "{Binding Name}">
+                    
                 </Picker>
                 <DatePicker Format="D" VerticalOptions="CenterAndExpand" />
                 <StackLayout Orientation="Horizontal">
