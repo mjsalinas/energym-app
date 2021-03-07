@@ -6,12 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\ClientesViews\**" />
-    <EmbeddedResource Remove="Views\ClientesViews\**" />
-    <None Remove="Views\ClientesViews\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="ViewModels\AboutViewModel - Copia.cs" />
   </ItemGroup>
 
@@ -23,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Configuraciones\CamposSegumientoView\CamposSeguimientoModificar.xaml">
+    <EmbeddedResource Update="Views\CamposSeguimientoPage2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ClientesView\ClienteView\ClientesModificar.xaml">
@@ -41,10 +35,10 @@
     <EmbeddedResource Update="Views\TabbedPage1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-     <EmbeddedResource Update="Views\Configuraciones\CamposSegumientoView\CamposSeguimientoRegistro.xaml">
+     <EmbeddedResource Update="Views\CamposSeguimientoPage1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Configuraciones\ConfiguracionMenu.xaml">
+    <EmbeddedResource Update="Views\ConfiguracionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TipoPlanPage.xaml">
@@ -53,10 +47,10 @@
     <EmbeddedResource Update="Views\TipoPlanPage2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Configuraciones\UnidadesDeMedidaView\UnidadMedidaRegistro.xaml">
+    <EmbeddedResource Update="Views\UnidadMedidaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Configuraciones\UnidadesDeMedidaView\UnidadMedidaModificar.xaml">
+    <EmbeddedResource Update="Views\UnidadMedidaPage2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -71,26 +65,14 @@
     </Compile>
     <Compile Update="Views\GruposViews\GruposMenu.xaml.cs">
       <DependentUpon>GruposMenu.xaml</DependentUpon>
-    <Compile Update="Views\Configuraciones\CamposSegumientoView\CamposSeguimientoModificar.xaml.cs">
-      <DependentUpon>CamposSeguimientoModificar.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Configuraciones\CamposSegumientoView\CamposSeguimientoRegistro.xaml.cs">
-      <DependentUpon>CamposSeguimientoRegistro.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Configuraciones\ConfiguracionMenu.xaml.cs">
-      <DependentUpon>ConfiguracionMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Configuraciones\UnidadesDeMedidaView\UnidadMedidaModificar.xaml.cs">
-      <DependentUpon>UnidadMedidaModificar.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Configuraciones\UnidadesDeMedidaView\UnidadMedidaRegistro.xaml.cs">
-      <DependentUpon>UnidadMedidaRegistro.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Xamarin.Forms.Platform">
-      <HintPath>..\..\..\..\..\..\Microsoft\Xamarin\NuGet\xamarin.forms\4.8.0.1451\lib\MonoAndroid90\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
+    <Folder Include="Views\ClientesViews\ClienteView\" />
+    <Folder Include="Views\ClientesViews\DatosSeguimientoView\" />
+    <Folder Include="Views\ClientesViews\RegistroPagosView\" />
+    <Folder Include="Views\ClientesViews\PagosView\" />
+     <Folder Include="Views\Configuraciones\" />
   </ItemGroup>
 </Project>
