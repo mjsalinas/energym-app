@@ -2,40 +2,38 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Energym.ViewModels
 {
-    public class CamposSeguimientotviewModel : INotifyPropertyChanged
+    public class ModificarCampoSeguimientoViewModel : INotifyPropertyChanged
     {
-        public CamposSeguimientotviewModel()
+        public ModificarCampoSeguimientoViewModel()
         {
-            RegistraCampoSeguimientoCommand = new Command(async () => await RegistrarCampoSeguimiento());
-            CancelarCommand = new Command(CancelarRegistroCampoSeguimiento);
-            CargarCampoSeguimiento().Wait();
+            ModificaCampoSeguimientoCommand = new Command(async () => await ModificarCampoSeguimiento());
+            CancelarCommand = new Command(CancelarModificarCampoSeguimiento);
         }
-
-        public Command RegistraCampoSeguimientoCommand { get; }
+        public Command ModificaCampoSeguimientoCommand { get; }
         public Command CancelarCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         List<CampoSeguimiento> camposSeguimientoExistentes;
-       string campoSeguimientoDescripcion;
-       string unidadMedida;
+        string campoSeguimientoDescripcion;
+        string unidadMedida;
+        string registroActivo;
+
 
         public List<CampoSeguimiento> CamposSeguimientoExistentes
         {
             get { return camposSeguimientoExistentes; }
             set { camposSeguimientoExistentes = value; }
         }
+
         public string CampoSeguimientoDescripcion
         {
             get { return campoSeguimientoDescripcion; }
@@ -45,6 +43,7 @@ namespace Energym.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
             }
         }
+
         public string UnidadMedida
         {
             get { return unidadMedida; }
@@ -53,33 +52,40 @@ namespace Energym.ViewModels
                 unidadMedida = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
             }
-
         }
-
-
-        async Task RegistrarCampoSeguimiento()
+       public string RegistroActivo
+        {
+            get { return registroActivo; }
+            set
+            {
+                RegistroActivo = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
+            }
+        }
+        async Task ModificarCampoSeguimiento()
         {
             CampoSeguimiento NuevoCampoSeguimiento = new CampoSeguimiento()
             {
-                CampoSeguimientoDescripcion =  campoSeguimientoDescripcion,
+                CampoSeguimientoDescripcion = campoSeguimientoDescripcion,
                 UnidadMedida = unidadMedida,
+                RegistroActivo = registroActivo,
             };
 
             var json = JsonConvert.SerializeObject(NuevoCampoSeguimiento);
-            var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
+            var registroMoficicado = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
 
-            var response = await client.PostAsync("http://157.230.13.243/cliente", registroNuevo);
+            var response = await client.PutAsync("http://157.230.13.243/cliente", registroMoficicado);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-              await  CargarCampoSeguimiento();
+                await CargarCampoSeguimiento();
             }
+
         }
-        void CancelarRegistroCampoSeguimiento()
+        void CancelarModificarCampoSeguimiento()
         {
             CampoSeguimientoDescripcion = string.Empty;
         }
-
         async Task CargarCampoSeguimiento()
         {
             HttpClient client = new HttpClient();
@@ -94,11 +100,3 @@ namespace Energym.ViewModels
         }
     }
 }
-
-        
-       
-        
-
-
-
-

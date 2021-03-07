@@ -72,4 +72,10 @@
     <Folder Include="Views\ClientesViews\PagosView\" />
      <Folder Include="Views\Configuraciones\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\..\..\..\..\..\Microsoft\Xamarin\NuGet\xamarin.forms\4.8.0.1451\lib\MonoAndroid90\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
