@@ -30,7 +30,7 @@
         </StackLayout>
 
         <StackLayout Padding="60" Spacing="0">
-            <Entry Placeholder="" Text="{Binding Text, Mode=TwoWay}" FontSize="Large" />
+            <Entry Placeholder="" Text="{Binding OportunidadDescripcion, Mode=TwoWay}" FontSize="Large" />
         </StackLayout>
 
         <StackLayout Padding="15" Spacing="0">

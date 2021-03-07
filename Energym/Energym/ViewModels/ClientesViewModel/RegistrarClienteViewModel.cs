@@ -83,12 +83,12 @@ namespace Energym.ViewModels.ClientesViewModel
                 TipoPlan = tipoPlan,
                 IdGrupo = idGrupo
             };
-            //llamada a servicios
-            var json = JsonConvert.SerializeObject(nuevoCliente);
+             var json = JsonConvert.SerializeObject(nuevoCliente);
             var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
         
-            var response = await client.PostAsync("http://157.230.13.243/cliente", registroNuevo);
+            var response = await client.PostAsync("http://157.230.13.243/cliente", registroNuevo);   //llamada a servicios
+        
         }
         void CancelarRegistroCliente()
         {

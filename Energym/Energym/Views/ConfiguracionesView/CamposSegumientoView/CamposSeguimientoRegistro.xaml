@@ -14,9 +14,8 @@
                 <ListView  ItemsSource="{Binding CamposSeguimientoExistentes}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            
-								<Grid Padding="0">
+                            <ViewCell>
+                                <Grid Padding="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2.5*"/>
                                         <ColumnDefinition Width="2.5*"/>
@@ -26,12 +25,10 @@
                                     <Label Margin="10,0,10,0" Text="Campo Seguimiento" TextColor="White" VerticalOptions="Center"  Grid.Column="1"/>
                                     <Label Margin="10,0,10,0" Text="Unidad de Medida" TextColor="White" VerticalOptions="Center"  Grid.Column="2" />
                                     <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-									<BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-									<BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-
-								</Grid>
-							
-                        </ViewCell>
+                                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                </Grid>
+                            </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
