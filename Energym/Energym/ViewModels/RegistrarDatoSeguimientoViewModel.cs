@@ -16,12 +16,12 @@ namespace Energym.ViewModels
         {
             RegistrarOportunidadesCommand = new Command(async () => await RegistrarDatosSeguimeinto());
             CancelarCommand = new Command(CancelarRegistroDatosSeguimiento);
-            CargarDatosSeguimiento().Wait();
-            CargarUnidadesMedida().Wait();
+            CargarDatosSeguimiento = CargarDatosSeguimientoTask();
+            CargarUnidadesMedida=  CargarUnidadesMedidaTask();
         }
         
         List<DatoSeguimiento> datosSeguimiento { get; set; }
-        List<UnidadMedida> unidadesMedida { get; set; }
+        List<UnidadMedidaModelo> unidadesMedida { get; set; }
         public Command RegistrarOportunidadesCommand { get; }
         public Command CancelarCommand { get; }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,7 +40,7 @@ namespace Energym.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DatosSeguimientos"));
             }
         }
-        public List<UnidadMedida> UnidadesMedida
+        public List<UnidadMedidaModelo> UnidadesMedida
         {
             get { return unidadesMedida; }
             set
@@ -89,14 +89,17 @@ namespace Energym.ViewModels
             var response = await client.PostAsync("http://157.230.13.243/DatosSeguimiento", registroNuevo);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                CargarDatosSeguimiento().Wait();
+                CargarDatosSeguimientoTask().Wait();
             }
         }
         private void CancelarRegistroDatosSeguimiento(object obj)
         {
             datoSeguimientoDescripcion = string.Empty;
         }
-        async Task CargarDatosSeguimiento()
+        public Task CargarUnidadesMedida { get; private set; }
+        public Task CargarDatosSeguimiento { get; private set; }
+
+        async Task CargarDatosSeguimientoTask()
         {
             HttpClient client = new HttpClient();
 
@@ -108,8 +111,8 @@ namespace Energym.ViewModels
             }
             //return response.
         }
-
-        async Task CargarUnidadesMedida()
+       
+        async Task CargarUnidadesMedidaTask()
         {
             HttpClient client = new HttpClient();
 
@@ -117,7 +120,7 @@ namespace Energym.ViewModels
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
-                UnidadesMedida = JsonConvert.DeserializeObject<IEnumerable<UnidadMedida>>(objetoRespuesta) as List<UnidadMedida>;
+                UnidadesMedida = JsonConvert.DeserializeObject<IEnumerable<UnidadMedidaModelo>>(objetoRespuesta) as List<UnidadMedidaModelo>;
             }
             //return response.
         }

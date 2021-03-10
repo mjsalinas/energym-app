@@ -4,10 +4,11 @@ using System.Text;
 
 namespace Energym.Models
 {
-    public class UnidadMedida
+    public class UnidadMedidaModelo
     {
+       
         public int IdUnidadMedida { get; set; }
-        public string UnidadMedidaDescripcion { get; set; }
+        public string UnidadMedida { get; set; }
         public byte? RegistroOculto { get; set; }
         public string MensajeDeError { get; set; }
 

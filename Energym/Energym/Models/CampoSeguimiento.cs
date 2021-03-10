@@ -6,9 +6,12 @@ namespace Energym.Models
 {
    public  class CampoSeguimiento
     {
-        public int Id { get; set; }
-        public string CampoSeguimientoDescripcion { get; set; }
-        public string UnidadMedida { get; set; }
-        public string RegistroActivo { get; set; }
+        
+
+        public int IdCampoSeguimiento { get; set; }
+        public string CampoSeguimiento1 { get; set; }
+        public int IdUnidadMedida { get; set; }
+        public bool RegistroOculto { get; set; }
+        public string MensajeDeError { get; set; }
     }
 }

@@ -1,0 +1,25 @@
+﻿
+using Energym.ViewModels.GruposViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace Energym.Views.GruposViews
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class GruposRegistro : ContentPage
+    {
+        public GruposRegistro()
+        {
+            InitializeComponent();
+            BindingContext = new RegistrarGrupoViewModel();
+
+        }
+    }
+}

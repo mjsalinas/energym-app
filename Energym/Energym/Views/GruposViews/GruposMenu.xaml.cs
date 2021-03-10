@@ -8,6 +8,7 @@ using Energym.Views.ClientesView.RegistroPagosView;
 using Energym.Views.ClientesView.DatosSeguimientoView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Energym.Views.GruposViews;
 
 namespace Energym.Views
 {
@@ -18,12 +19,12 @@ namespace Energym.Views
             InitializeComponent();
             btnToGruposRegistrar.Clicked += (sender, e) =>
             {
-                Navigation.PushAsync(new ClientesRegistro());
+                Navigation.PushAsync(new GruposRegistro());
             };
             
             btnToGruposModificar.Clicked += (sender, e) =>
             {
-                Navigation.PushAsync(new DatosSeguimientoModificar());
+                Navigation.PushAsync(new GruposModificar());
             };
         }
         //public ToClientesModificar()

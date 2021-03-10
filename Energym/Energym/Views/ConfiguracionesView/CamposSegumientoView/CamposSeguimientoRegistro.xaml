@@ -35,15 +35,12 @@
             </Frame>
         </StackLayout>
         <StackLayout>
-            <Picker TitleColor="DarkSlateGray"   Margin="10" ItemDisplayBinding="{Binding UnidadMedida}" Title="Unidad de Medida" ItemsSource="{Binding CamposList}"  />
+            <Picker TitleColor="DarkSlateGray"  Margin="10" ItemDisplayBinding="{Binding UnidadMedida}" Title="Unidad de Medida" ItemsSource="{Binding UnidadesMedida}" SelectedItem="{Binding UnidadMedidaSeleccionada}"  />
             <Entry  Placeholder="Campo de Seguimiento" Text="{Binding CamposSeguimiento}" TextColor="DarkSlateGray"></Entry>
         </StackLayout>
-        <StackLayout>
-				<CheckBox Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" Color="DarkSlateGray" />
-				<Label Grid.Row="1" Grid.Column="2" Text="Habilitado" TextColor="DarkSlateGray" HorizontalOptions="Center" />
-			</StackLayout>
+      
         <StackLayout Orientation="Horizontal" Spacing="3" Padding="15">
-            <Button Text="Save" Command="{Binding RegistrarCampoSeguimiento}" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Save" Command="{Binding RegistraCampoSeguimientoCommand}" HorizontalOptions="FillAndExpand"/>
             <Button Text="Cancel" Command="{Binding CancelarCommand}" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
 

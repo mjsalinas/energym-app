@@ -24,8 +24,8 @@ namespace Energym.ViewModels
 
         List<CampoSeguimiento> camposSeguimientoExistentes;
         string campoSeguimientoDescripcion;
-        string unidadMedida;
-        string registroActivo;
+        UnidadMedidaModelo unidadMedida;
+        bool registroActivo;
 
 
         public List<CampoSeguimiento> CamposSeguimientoExistentes
@@ -44,7 +44,7 @@ namespace Energym.ViewModels
             }
         }
 
-        public string UnidadMedida
+        public UnidadMedidaModelo UnidadMedida
         {
             get { return unidadMedida; }
             set
@@ -53,7 +53,7 @@ namespace Energym.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
             }
         }
-       public string RegistroActivo
+       public bool RegistroActivo
         {
             get { return registroActivo; }
             set
@@ -66,9 +66,9 @@ namespace Energym.ViewModels
         {
             CampoSeguimiento NuevoCampoSeguimiento = new CampoSeguimiento()
             {
-                CampoSeguimientoDescripcion = campoSeguimientoDescripcion,
-                UnidadMedida = unidadMedida,
-                RegistroActivo = registroActivo,
+                CampoSeguimiento1 = campoSeguimientoDescripcion,
+                IdUnidadMedida = unidadMedida.IdUnidadMedida,
+                RegistroOculto = registroActivo,
             };
 
             var json = JsonConvert.SerializeObject(NuevoCampoSeguimiento);

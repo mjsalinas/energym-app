@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Energym.Views.GruposViews.GruposRegistro">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
+                <Label  Text="Crear cliente" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Entry Placeholder="Nombre" Text="{Binding Nombre}" FontSize="Medium" />
+                <Entry Placeholder="Numero" Text="{Binding NumeroTelefono}" FontSize="Medium" />
+                <DatePicker Format="D" VerticalOptions="CenterAndExpand" />
+                <Entry Placeholder="Correo" Text="{Binding Correo}" FontSize="Medium" />
+                <Picker x:Name="picker"
+                    Title="Tipo de Plan"
+                    TitleColor="black">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>1</x:String>
+                            <x:String>2</x:String>
+                            <x:String>3</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelarCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding RegistrarClienteCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
+                <Frame BackgroundColor="AliceBlue" BorderColor="DarkSlateGray" HeightRequest="60" Padding="0">
+                    <Grid Padding="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label Margin="10,0,10,0" Text="IdCliente" VerticalOptions="Center" Grid.Column="0">
+                            <!--<Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="NameSort_Tapped"/>
+                            </Label.GestureRecognizers>-->
+                        </Label>
+                        <Label Margin="10,0,10,0" Text="Nombre" VerticalOptions="Center" Grid.Column="1"/>
+                        <Label Margin="10,0,10,0" Text="Estatus" VerticalOptions="Center" Grid.Column="2"/>
+                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    </Grid>
+                </Frame>
+
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

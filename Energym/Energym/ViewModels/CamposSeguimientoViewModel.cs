@@ -19,17 +19,18 @@ namespace Energym.ViewModels
         {
             RegistraCampoSeguimientoCommand = new Command(async () => await RegistrarCampoSeguimiento());
             CancelarCommand = new Command(CancelarRegistroCampoSeguimiento);
-            CargarCampoSeguimiento().Wait();
+            CargarCampoSeguimiento = CargarCampoSeguimientoTask();
         }
 
         public Command RegistraCampoSeguimientoCommand { get; }
         public Command CancelarCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        List<UnidadMedidaModelo> unidadesMedida { get; set; }
 
         List<CampoSeguimiento> camposSeguimientoExistentes;
        string campoSeguimientoDescripcion;
-       string unidadMedida;
+        UnidadMedidaModelo unidadMedida;
 
         public List<CampoSeguimiento> CamposSeguimientoExistentes
         {
@@ -45,24 +46,33 @@ namespace Energym.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
             }
         }
-        public string UnidadMedida
+        public UnidadMedidaModelo UnidadMedidaSeleccionada
         {
             get { return unidadMedida; }
             set
             {
                 unidadMedida = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UnidadesMedidaSeleccionada"));
             }
 
         }
+        public List<UnidadMedidaModelo> UnidadesMedida
+        {
+            get { return unidadesMedida; }
+            set
+            {
+                unidadesMedida = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UnidadesMedida"));
+            }
+        }
 
-
-        async Task RegistrarCampoSeguimiento()
+        
+            async Task RegistrarCampoSeguimiento()
         {
             CampoSeguimiento NuevoCampoSeguimiento = new CampoSeguimiento()
             {
-                CampoSeguimientoDescripcion =  campoSeguimientoDescripcion,
-                UnidadMedida = unidadMedida,
+                CampoSeguimiento1 =  campoSeguimientoDescripcion,
+                IdUnidadMedida = UnidadMedidaSeleccionada.IdUnidadMedida,
             };
 
             var json = JsonConvert.SerializeObject(NuevoCampoSeguimiento);
@@ -72,7 +82,7 @@ namespace Energym.ViewModels
             var response = await client.PostAsync("http://157.230.13.243/cliente", registroNuevo);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-              await  CargarCampoSeguimiento();
+              await  CargarCampoSeguimientoTask();
             }
         }
         void CancelarRegistroCampoSeguimiento()
@@ -80,15 +90,28 @@ namespace Energym.ViewModels
             CampoSeguimientoDescripcion = string.Empty;
         }
 
-        async Task CargarCampoSeguimiento()
+        public Task CargarCampoSeguimiento { get; private set; }
+        private async Task CargarCampoSeguimientoTask()
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("http://157.230.13.243/cliente");
+            var response = await client.GetAsync("http://157.230.13.243/camposseguimiento");
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
                 CamposSeguimientoExistentes = JsonConvert.DeserializeObject<IEnumerable<CampoSeguimiento>>(objetoRespuesta) as List<CampoSeguimiento>;
+            }
+            //return response.
+        }
+        public async Task CargarUnidadesMedidaTask()
+        {
+            HttpClient client = new HttpClient();
+
+            var response = await client.GetAsync("http://157.230.13.243/UnidadesMedida");
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string objetoRespuesta = await response.Content.ReadAsStringAsync();
+                UnidadesMedida = JsonConvert.DeserializeObject<IEnumerable<UnidadMedidaModelo>>(objetoRespuesta) as List<UnidadMedidaModelo>;
             }
             //return response.
         }

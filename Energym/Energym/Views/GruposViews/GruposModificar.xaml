@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Energym.Views.GruposViews.GruposModificar">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
+                <Label  Text="Modificar Cliente" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <SearchBar Placeholder="Buscar..." />
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical" > 
+                <Frame BackgroundColor="AliceBlue" BorderColor="DarkSlateGray" HeightRequest="60" Padding="0">
+                    <ListView ItemsSource="{Binding ClientesExistentes}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="10,0,10,0" Text="IdCliente" VerticalOptions="Center" Grid.Column="0"/>
+                                        <Label Margin="10,0,10,0" Text="Nombre" VerticalOptions="Center" Grid.Column="1"/>
+                                        <Label Margin="10,0,10,0" Text="Estatus" VerticalOptions="Center" Grid.Column="2"/>
+                                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
+            </StackLayout>
+            <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
+                <Entry Placeholder="Nombre" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+                <Entry Placeholder="Numero" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+                <DatePicker Date="{Binding FechaIngreso, Mode=TwoWay}" Format="D" VerticalOptions="CenterAndExpand" />
+                <Entry Placeholder="Correo" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+                <Picker x:Name="picker"
+                    Title="Tipo de Plan"
+                    TitleColor="black">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>1</x:String>
+                            <x:String>2</x:String>
+                            <x:String>3</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Estado Activo" />
+                <Switch IsToggled="true"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

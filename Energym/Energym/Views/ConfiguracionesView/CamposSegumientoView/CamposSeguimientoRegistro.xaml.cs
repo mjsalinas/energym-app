@@ -23,7 +23,10 @@ namespace Energym.Views
 
 
         }
-
+        protected async override void OnAppearing()
+        {
+            await ((CamposSeguimientotviewModel)this.BindingContext).CargarUnidadesMedidaTask();
+        }
         private void btnAceptar_Clicked(object sender, EventArgs e)
         {
 
