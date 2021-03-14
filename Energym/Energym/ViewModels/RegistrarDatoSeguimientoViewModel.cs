@@ -1,4 +1,5 @@
-﻿using Energym.Models;
+﻿using Energym.ApiRoutes;
+using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -86,7 +87,7 @@ namespace Energym.ViewModels
             var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
 
-            var response = await client.PostAsync("http://157.230.13.243/DatosSeguimiento", registroNuevo);
+            var response = await client.PostAsync(Routes.DatosSeguimiento, registroNuevo);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 CargarDatosSeguimientoTask().Wait();
@@ -103,7 +104,7 @@ namespace Energym.ViewModels
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("http://157.230.13.243/DatosSeguimiento");
+            var response = await client.GetAsync(Routes.DatosSeguimiento);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
@@ -116,7 +117,7 @@ namespace Energym.ViewModels
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("http://157.230.13.243/UnidadesMedida");
+            var response = await client.GetAsync(Routes.UnidadesMedida);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();

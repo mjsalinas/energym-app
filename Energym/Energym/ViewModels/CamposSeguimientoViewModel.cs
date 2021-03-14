@@ -1,4 +1,5 @@
-﻿using Energym.Models;
+﻿using Energym.ApiRoutes;
+using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace Energym.ViewModels
         List<UnidadMedidaModelo> unidadesMedida { get; set; }
 
         List<CampoSeguimiento> camposSeguimientoExistentes;
-       string campoSeguimientoDescripcion;
+        string campoSeguimientoDescripcion;
         UnidadMedidaModelo unidadMedida;
 
         public List<CampoSeguimiento> CamposSeguimientoExistentes
@@ -66,12 +67,12 @@ namespace Energym.ViewModels
             }
         }
 
-        
-            async Task RegistrarCampoSeguimiento()
+
+        async Task RegistrarCampoSeguimiento()
         {
             CampoSeguimiento NuevoCampoSeguimiento = new CampoSeguimiento()
             {
-                CampoSeguimiento1 =  campoSeguimientoDescripcion,
+                CampoSeguimiento1 = campoSeguimientoDescripcion,
                 IdUnidadMedida = UnidadMedidaSeleccionada.IdUnidadMedida,
             };
 
@@ -79,10 +80,10 @@ namespace Energym.ViewModels
             var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
 
-            var response = await client.PostAsync("http://157.230.13.243/cliente", registroNuevo);
+            var response = await client.PostAsync(Routes.Cliente, registroNuevo);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-              await  CargarCampoSeguimientoTask();
+                await CargarCampoSeguimientoTask();
             }
         }
         void CancelarRegistroCampoSeguimiento()
@@ -95,7 +96,7 @@ namespace Energym.ViewModels
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("http://157.230.13.243/camposseguimiento");
+            var response = await client.GetAsync(Routes.CamposSeguimiento);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
@@ -107,7 +108,7 @@ namespace Energym.ViewModels
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("http://157.230.13.243/UnidadesMedida");
+            var response = await client.GetAsync(Routes.UnidadesMedida);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
@@ -118,9 +119,9 @@ namespace Energym.ViewModels
     }
 }
 
-        
-       
-        
+
+
+
 
 
 

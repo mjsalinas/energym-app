@@ -1,4 +1,5 @@
-﻿using Energym.Models;
+﻿using Energym.ApiRoutes;
+using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -87,7 +88,7 @@ namespace Energym.ViewModels.ClientesViewModel
             var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
         
-            var response = await client.PostAsync("http://157.230.13.243/cliente", registroNuevo);   //llamada a servicios
+            var response = await client.PostAsync(Routes.Cliente, registroNuevo);   //llamada a servicios
         
         }
         void CancelarRegistroCliente()
@@ -99,7 +100,7 @@ namespace Energym.ViewModels.ClientesViewModel
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("http://157.230.13.243/cliente");
+            var response = await client.GetAsync(Routes.Cliente);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();

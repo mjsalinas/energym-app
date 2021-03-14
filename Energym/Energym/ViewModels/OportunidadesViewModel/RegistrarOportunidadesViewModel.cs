@@ -1,4 +1,5 @@
-﻿using Energym.Models;
+﻿using Energym.ApiRoutes;
+using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace Energym.ViewModels.OportunidadesViewModel
             var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
 
-            var response = await client.PostAsync("http://157.230.13.243/Oportunidades", registroNuevo);
+            var response = await client.PostAsync(Routes.Oportunidades, registroNuevo);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 CargarOportunidades().Wait();
@@ -83,7 +84,7 @@ namespace Energym.ViewModels.OportunidadesViewModel
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("http://157.230.13.243/Oportunidades");
+            var response = await client.GetAsync(Routes.Oportunidades);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
