@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d"
+             x:Class="Energym.Views.UnidadMedidaPage2">
+	<StackLayout Padding="10" Spacing="0">
+		<Label Margin="0,0,0,20" FontSize="Large" Text="Registrar Unidad de Medida" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+		<Entry  Placeholder="Unidad de Medida" TextColor="DarkSlateGray"></Entry>
+
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Button  HorizontalOptions="FillAndExpand" 
+                     Text="Guardar" 
+					 BackgroundColor="{StaticResource Primary}"
+                     TextColor="White" 
+          				Clicked="btnAceptar_Clicked" />
+
+            <Button HorizontalOptions="FillAndExpand" 
+                    Text="Cancelar"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White" 
+					Clicked="btnCancelar_Clicked" />
+
+			</StackLayout>
+
+        <Frame BackgroundColor="{StaticResource Primary}" BorderColor="DarkBlue" HeightRequest="120" Padding="0">
+			<Grid Padding="0">
+                <Label Margin="10,0,10,0" Text="Unidad de Medida" TextColor="White" VerticalOptions="Center"   Grid.Column="0" >
+					<Label.GestureRecognizers>
+
+					</Label.GestureRecognizers>
+				</Label>
+				<BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+			</Grid>
+		</Frame>
+            <ListView  x:Name="UnidadesMedida" 
+                       ItemsSource="{Binding UnidadesMedidaExistentes}" 
+                       SelectedItem="{Binding UnidadMedidaSeleccionada}"
+                       SeparatorVisibility="None" 
+                       SelectionMode="None" 
+                       HasUnevenRows="False">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Frame  Padding="0" BorderColor="DarkSlateGray">
+								<Grid Padding="0" RowSpacing="0">
+                                <Label Margin="10,0,10,0" Text="{Binding UnidadMedida}" VerticalOptions="Center"  Grid.Column="0" Grid.Row="0" />
+									<BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+								</Grid>
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+	</StackLayout>
+
+
+</ContentPage>
+    

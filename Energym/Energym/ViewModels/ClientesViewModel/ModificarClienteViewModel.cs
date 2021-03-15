@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Energym.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -19,14 +20,14 @@ namespace Energym.ViewModels.ClientesViewModel
         
         public event PropertyChangedEventHandler PropertyChanged;
 
-        List<string> clientesExistentes;
-        string nombre = "prueba";
+        List<Cliente> clientesExistentes;
+        string nombre = string.Empty;
         string numeroTelefono = string.Empty;
         string correo = string.Empty;
         DateTime fechaIngreso = DateTime.Now.AddDays(5);
         int tipoPlanId;
 
-        public List<string> ClientesExistentes
+        public List<Cliente> ClientesExistentes
         {
 
             get { return clientesExistentes; }

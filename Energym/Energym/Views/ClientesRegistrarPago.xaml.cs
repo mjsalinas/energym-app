@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Energym.Views.ClientesView.RegistroPagosView
+namespace Energym.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ClientesRegistrarPago : ContentPage

@@ -6,6 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ClientesViews\**" />
+    <Compile Remove="Views\ClientesView\PagosView\**" />
+    <Compile Remove="Views\Configuraciones\**" />
+    <EmbeddedResource Remove="Views\ClientesViews\**" />
+    <EmbeddedResource Remove="Views\ClientesView\PagosView\**" />
+    <EmbeddedResource Remove="Views\Configuraciones\**" />
+    <None Remove="Views\ClientesViews\**" />
+    <None Remove="Views\ClientesView\PagosView\**" />
+    <None Remove="Views\Configuraciones\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="ViewModels\AboutViewModel - Copia.cs" />
   </ItemGroup>
 
@@ -20,16 +32,16 @@
     <EmbeddedResource Update="Views\CamposSeguimientoPage2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClientesView\ClienteView\ClientesModificar.xaml">
+    <EmbeddedResource Update="Views\ClientesModificar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClientesView\ClienteView\ClientesRegistro.xaml">
+    <EmbeddedResource Update="Views\ClientesRegistro.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClientesView\DatosSeguimientoView\DatosSeguimientoRegistro.xaml">
+    <EmbeddedResource Update="Views\DatosSeguimientoRegistro.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClientesView\RegistroPagosView\ClientesRegistrarPago.xaml">
+    <EmbeddedResource Update="Views\ClientesRegistrarPago.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TabbedPage1.xaml">
@@ -56,29 +68,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\ClientesView\PagosView\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\ClientesView\DatosSeguimientoView\DatosSeguimientoRegistro.xaml.cs">
+    <Compile Update="Views\DatosSeguimientoRegistro.xaml.cs">
       <DependentUpon>DatosSeguimientoRegistro.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\GruposViews\GruposModificar.xaml.cs">
+    <Compile Update="Views\GruposModificar.xaml.cs">
       <DependentUpon>GruposModificar.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\GruposViews\GruposRegistro.xaml.cs">
+    <Compile Update="Views\GruposRegistro.xaml.cs">
       <DependentUpon>GruposRegistro.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\GruposViews\GruposMenu.xaml.cs">
       <DependentUpon>GruposMenu.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\ClientesViews\ClienteView\" />
-    <Folder Include="Views\ClientesViews\DatosSeguimientoView\" />
-    <Folder Include="Views\ClientesViews\RegistroPagosView\" />
-    <Folder Include="Views\ClientesViews\PagosView\" />
-     <Folder Include="Views\Configuraciones\" />
   </ItemGroup>
 </Project>

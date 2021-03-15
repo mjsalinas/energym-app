@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Energym.Views.GruposViews.GruposModificar">
+             x:Class="Energym.Views.GruposModificar">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
-                <Label  Text="Modificar Cliente" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label  Text="Modificar Grupo" FontSize="Large" HorizontalTextAlignment="Center"/>
             </StackLayout>
             <StackLayout Orientation="Vertical">
                 <SearchBar Placeholder="Buscar..." />

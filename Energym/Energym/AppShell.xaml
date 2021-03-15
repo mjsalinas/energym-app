@@ -70,42 +70,46 @@
     <!-- 
         When the Flyout is visible this defines the content to display in the flyout. FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-   
 
 
 
 
-    <FlyoutItem Title="Clientes" Icon="clientes.png" >
+
+    <FlyoutItem Title="Clientes" Icon="clientes.png" Route="ClientesMenu">
         <ShellContent Title="Clientes" Icon="clientes.png" Route="ClientesMenu" ContentTemplate="{DataTemplate local:ClientesMenu}" />
         <ShellContent Title="Grupos" Icon="grupos.png" Route="GruposMenu" ContentTemplate="{DataTemplate local:GruposMenu}" />
         <ShellContent Title="Configuraciones" Icon="IcoConfig.png" Route="ConfiguracionPage" ContentTemplate="{DataTemplate local:ConfiguracionPage}" />
         <ShellContent Title="Oportunidades" Icon="icon_about.png" Route="OportunidadesPage" ContentTemplate="{DataTemplate local:OportunidadesPage}" />
     </FlyoutItem>
+    <ShellContent Title="Registrar Cliente"                 Route="ClientesRegistro"            ContentTemplate="{DataTemplate local:ClientesRegistro}" />
+    <ShellContent Title="Modificar Cliente"                 Route="ClientesModificar"           ContentTemplate="{DataTemplate local:ClientesModificar}"  />
+    <ShellContent Title="Registrar Pago"                    Route="ClientesRegistrarPago"       ContentTemplate="{DataTemplate local:ClientesRegistrarPago}" />
+    <ShellContent Title="Registrar Datos de Seguimiento"    Route="DatosSeguimientoIngresar"    ContentTemplate="{DataTemplate local:DatosSeguimientoIngresar}" />
+    <ShellContent Title="Modificar Datos de Seguimiento"    Route="DatosSeguimientoModificar"   ContentTemplate="{DataTemplate local:DatosSeguimientoModificar}" />
 
-    <ShellContent Title="Registrar Cliente"  Route="ClientesRegistro" ContentTemplate="{DataTemplate local:ClientesRegistro}" />
-    <ShellContent Title="Modificar Cliente"  Route="ClientesRegistro" ContentTemplate="{DataTemplate local:ClientesRegistro}" />
-    <ShellContent Title="Registrar Pago"  Route="ClientesRegistro" ContentTemplate="{DataTemplate local:ClientesRegistro}" />
-    <ShellContent Title="Registrar Datos de Seguimiento"  Route="ClientesRegistro" ContentTemplate="{DataTemplate local:ClientesRegistro}" />
-    <ShellContent Title="Modificar Datos de Seguimiento"  Route="ClientesRegistro" ContentTemplate="{DataTemplate local:ClientesRegistro}" />
-
-    <FlyoutItem Title="Grupos" Icon="grupos.png">
+    <FlyoutItem Title="Grupos" Icon="grupos.png" Route="GruposMenu"  >
         <ShellContent Title="Clientes" Icon="clientes.png" Route="ClientesMenu" ContentTemplate="{DataTemplate local:ClientesMenu}" />
         <ShellContent Title="Grupos" Icon="grupos.png" Route="GruposMenu" ContentTemplate="{DataTemplate local:GruposMenu}" />
         <ShellContent Title="Configuraciones" Icon="IcoConfig.png" Route="ConfiguracionPage" ContentTemplate="{DataTemplate local:ConfiguracionPage}" />
         <ShellContent Title="Oportunidades" Icon="icon_about.png" Route="OportunidadesPage" ContentTemplate="{DataTemplate local:OportunidadesPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Configuraciones" Icon="IcoConfig.png">
+    <ShellContent Title="Registrar Grupos"         Route="GruposRegistro"        ContentTemplate="{DataTemplate local:GruposRegistro}" />
+    <ShellContent Title="Modificar Grupos"         Route="GruposModificar"        ContentTemplate="{DataTemplate local:GruposModificar}" />
+
+    <FlyoutItem Title="Configuraciones" Icon="IcoConfig.png" Route="ConfiguracionPage">
         <ShellContent Title="Clientes" Icon="clientes.png" Route="ClientesMenu" ContentTemplate="{DataTemplate local:ClientesMenu}" />
         <ShellContent Title="Grupos" Icon="grupos.png" Route="GruposMenu" ContentTemplate="{DataTemplate local:GruposMenu}" />
         <ShellContent Title="Configuraciones" Icon="IcoConfig.png" Route="ConfiguracionPage" ContentTemplate="{DataTemplate local:ConfiguracionPage}" />
         <ShellContent Title="Oportunidades" Icon="icon_about.png" Route="OportunidadesPage" ContentTemplate="{DataTemplate local:OportunidadesPage}" />
     </FlyoutItem>
-    
-    <ShellContent Title="Campos de Seguimiento"  Route="ClientesRegistro" ContentTemplate="{DataTemplate local:ClientesRegistro}" />
-    <ShellContent Title="Unidad de Medida"  Route="ClientesRegistro" ContentTemplate="{DataTemplate local:ClientesRegistro}" />
-    <ShellContent Title="Tipos de Plan"  Route="ClientesRegistro" ContentTemplate="{DataTemplate local:ClientesRegistro}" />
-    
-    <FlyoutItem Title="Oportunidades" Icon="icon_about.png">
+    <ShellContent Title="Registrar Campos de Seguimiento"         Route="CamposSeguimientoPage1"        ContentTemplate="{DataTemplate local:CamposSeguimientoPage1}" />
+    <ShellContent Title="Modificar Campos de Seguimiento"         Route="CamposSeguimientoPage2"        ContentTemplate="{DataTemplate local:CamposSeguimientoPage2}" />
+    <ShellContent Title="Registrar Tipos de Plan"              Route="TipoPlanPage"        ContentTemplate="{DataTemplate local:TipoPlanPage}" />
+    <ShellContent Title="Modificar Tipos de Plan"                 Route="TipoPlanPage2"        ContentTemplate="{DataTemplate local:TipoPlanPage2}" />
+    <ShellContent Title="Registrar Unidad de Medida"              Route="UnidadMedidaPage"        ContentTemplate="{DataTemplate local:UnidadMedidaPage}" />
+    <ShellContent Title="Modificar Unidad de Medida"                 Route="UnidadMedidaPage2"        ContentTemplate="{DataTemplate local:UnidadMedidaPage2}" />
+
+    <FlyoutItem Title="Oportunidades" Icon="icon_about.png" Route="OportunidadesPage">
         <ShellContent Title="Clientes" Icon="clientes.png" Route="ClientesMenu" ContentTemplate="{DataTemplate local:ClientesMenu}" />
         <ShellContent Title="Grupos" Icon="grupos.png" Route="GruposMenu" ContentTemplate="{DataTemplate local:GruposMenu}" />
         <ShellContent Title="Configuraciones" Icon="IcoConfig.png" Route="ConfiguracionPage" ContentTemplate="{DataTemplate local:ConfiguracionPage}" />

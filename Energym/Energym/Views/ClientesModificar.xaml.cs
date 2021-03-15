@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Energym.Views.ClientesView.ClienteView
+namespace Energym.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ClientesModificar : ContentPage
@@ -17,7 +17,6 @@ namespace Energym.Views.ClientesView.ClienteView
         {
             InitializeComponent();
             BindingContext = new ModificarClienteViewModel();
-
         }
     }
 }

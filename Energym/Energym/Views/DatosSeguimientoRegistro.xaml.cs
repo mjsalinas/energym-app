@@ -1,25 +1,21 @@
-﻿
-using Energym.ViewModels.GruposViewModel;
+﻿using Energym.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Energym.Views.GruposViews
-{
+namespace Energym.Views { 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GruposRegistro : ContentPage
+    public partial class DatosSeguimientoIngresar : ContentPage
     {
-        public GruposRegistro()
+        public DatosSeguimientoIngresar()
         {
             InitializeComponent();
-            BindingContext = new RegistrarGrupoViewModel();
-
+            BindingContext = new RegistrarDatoSeguimientoViewModel();
         }
     }
 }
