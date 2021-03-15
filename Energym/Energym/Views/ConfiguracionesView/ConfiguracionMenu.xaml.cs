@@ -28,11 +28,19 @@ namespace Energym.Views
         {
             await Navigation.PushAsync(new CamposSeguimientoPage1());
         }
-
+        private async void btnCamposSeguimientoModificar(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CamposSeguimientoPage2());
+        }
         private async void btnPag3_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UnidadMedidaPage2());
+        }
+        private async void btnModificarUnidadMedida_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new UnidadMedidaPage());
         }
+
     }
 
         

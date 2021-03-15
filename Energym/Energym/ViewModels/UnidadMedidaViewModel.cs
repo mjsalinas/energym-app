@@ -1,4 +1,5 @@
-﻿ using System;
+﻿using Energym.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -19,10 +20,10 @@ namespace Energym.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        List<string> unidadesMedidaExistentes;
-        string unidadMedida = "centimetros";
+        List<UnidadMedidaModelo> unidadesMedidaExistentes;
+        string unidadMedida;
 
-        public List<string> UnidadesMedidaExistentes
+        public List<UnidadMedidaModelo> UnidadesMedidaExistentes
         {
             get { return unidadesMedidaExistentes; }
             set { unidadesMedidaExistentes = value; }
@@ -36,7 +37,7 @@ namespace Energym.ViewModels
         }
         async Task RegistrarUnidadMedida()
         {
-            await Task.Delay(400);
+
         }
         void CancelarRegistroUnidadMedida()
         {

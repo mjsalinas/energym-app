@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Energym.Views.GruposViews.GruposRegistro">
+             x:Class="Energym.Views.GruposRegistro">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
-                <Label  Text="Crear cliente" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label  Text="Registrar Grupo" FontSize="Large" HorizontalTextAlignment="Center"/>
                 <Entry Placeholder="Nombre" Text="{Binding Nombre}" FontSize="Medium" />
                 <Entry Placeholder="Numero" Text="{Binding NumeroTelefono}" FontSize="Medium" />
                 <DatePicker Format="D" VerticalOptions="CenterAndExpand" />

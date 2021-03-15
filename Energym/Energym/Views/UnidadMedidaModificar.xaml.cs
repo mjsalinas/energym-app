@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Energym.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,11 @@ using Xamarin.Forms.Xaml;
 namespace Energym.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CamposSeguimientoPage2 : ContentPage
+    public partial class UnidadMedidaPage2 : ContentPage
     {
-        public CamposSeguimientoPage2()
+        public UnidadMedidaPage2()
         {
+            BindingContext = new UnidadMedidaViewModel();
             InitializeComponent();
         }
 
@@ -23,11 +25,6 @@ namespace Energym.Views
         }
 
         private void btnCancelar_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NameSort_Tapped(object sender, EventArgs e)
         {
 
         }

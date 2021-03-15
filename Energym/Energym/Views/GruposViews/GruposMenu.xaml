@@ -2,17 +2,32 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Energym.Views.GruposMenu">
-    <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Spacing="3" Padding="15" Orientation="Vertical" >
-                <Label  Text="Módulo de Grupos" FontSize="Medium" HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
-                <Button x:Name="btnToGruposRegistrar" Text="Registrar Nuevo" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
-            </StackLayout>
-            <StackLayout Spacing="3" Padding="15" Orientation="Vertical">
-                <Button x:Name="btnToGruposModificar" Text="Modificar Existente" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#c2c3c4</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
+                    <Image Source="IcoEnergym1.png" VerticalOptions="Center" HeightRequest="35" />
+                </ContentView>
             </StackLayout>
         </StackLayout>
-    </ContentPage.Content>
+        <ScrollView Grid.Row="1">
+            <!--<ContentPage.Content>-->
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                <Label  Text="Módulo de Grupos" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                <Button x:Name="btnToGruposRegistrar" Text="Registrar Nuevo" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button x:Name="btnToGruposModificar" Text="Modificar Existente" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+    <!--</ContentPage.Content>-->
 </ContentPage>

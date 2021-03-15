@@ -25,7 +25,7 @@ namespace Energym.ViewModels.ClientesViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        string nombre = "maria";
+        string nombre;
         string numeroTelefono = string.Empty;
         DateTime fechaIngreso;
         string correo = string.Empty;

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Energym.Views.ClientesView.ClienteView;
-using Energym.Views.ClientesView.RegistroPagosView;
-using Energym.Views.ClientesView.DatosSeguimientoView;
+using Energym.Views;
+//using Energym.Views.ClientesView.ClienteView;
+//using Energym.Views.ClientesView.RegistroPagosView;
+//using Energym.Views.ClientesView.DatosSeguimientoView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
