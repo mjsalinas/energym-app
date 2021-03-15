@@ -7,20 +7,20 @@
              x:Class="Energym.Views.UnidadMedidaPage2">
 	<StackLayout Padding="10" Spacing="0">
 		<Label Margin="0,0,0,20" FontSize="Large" Text="Registrar Unidad de Medida" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-		<Entry  Placeholder="Unidad de Medida" TextColor="DarkSlateGray"></Entry>
+		<Entry  Placeholder="Unidad de Medida" Text ="{Binding UnidadMedida}" TextColor="DarkSlateGray"></Entry>
 
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Button  HorizontalOptions="FillAndExpand" 
                      Text="Guardar" 
 					 BackgroundColor="{StaticResource Primary}"
                      TextColor="White" 
-          				Clicked="btnAceptar_Clicked" />
+          				Command="{Binding RegistraUnidadMedidaCommand}" />
 
             <Button HorizontalOptions="FillAndExpand" 
                     Text="Cancelar"
                     BackgroundColor="{StaticResource Primary}"
                     TextColor="White" 
-					Clicked="btnCancelar_Clicked" />
+					Command="{Binding CancelarCommand}" />
 
 			</StackLayout>
 
@@ -36,7 +36,6 @@
 		</Frame>
             <ListView  x:Name="UnidadesMedida" 
                        ItemsSource="{Binding UnidadesMedidaExistentes}" 
-                       SelectedItem="{Binding UnidadMedidaSeleccionada}"
                        SeparatorVisibility="None" 
                        SelectionMode="None" 
                        HasUnevenRows="False">

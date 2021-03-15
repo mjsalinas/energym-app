@@ -18,15 +18,5 @@ namespace Energym.Views
             BindingContext = new UnidadMedidaViewModel();
             InitializeComponent();
         }
-
-        private void btnAceptar_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCancelar_Clicked(object sender, EventArgs e)
-        {
-
-        }
     }
 }

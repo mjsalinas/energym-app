@@ -3,6 +3,7 @@ using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Text;
@@ -17,19 +18,23 @@ namespace Energym.ViewModels
         {
             RegistraUnidadMedidaCommand = new Command(async () => await RegistrarUnidadMedida());
             CancelarCommand = new Command(CancelarRegistroUnidadMedida);
+            CargarUnidadesMedida = CargarUnidadesMedidaTask();
         }
         public Command RegistraUnidadMedidaCommand { get; }
         public Command CancelarCommand { get; }
+        public Task CargarUnidadesMedida { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        List<UnidadMedidaModelo> unidadesMedidaExistentes;
+        ObservableCollection<UnidadMedidaModelo> unidadesMedidaExistentes;
         string unidadMedida;
 
-        public List<UnidadMedidaModelo> UnidadesMedidaExistentes
+        public ObservableCollection<UnidadMedidaModelo> UnidadesMedidaExistentes
         {
             get { return unidadesMedidaExistentes; }
-            set { unidadesMedidaExistentes = value; }
+            set { unidadesMedidaExistentes = value; 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UnidadesMedidaExistentes"));
+            }
         }
         public string UnidadMedida
         {
@@ -55,6 +60,19 @@ namespace Energym.ViewModels
         void CancelarRegistroUnidadMedida()
         {
             UnidadMedida = string.Empty;
+        }
+        async Task CargarUnidadesMedidaTask()
+        {
+            HttpClient client = new HttpClient();
+
+            var response = await client.GetAsync(Routes.UnidadesMedida);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string objetoRespuesta = await response.Content.ReadAsStringAsync();
+                List<UnidadMedidaModelo> unidadesMedidaAlmacenamiento = JsonConvert.DeserializeObject<IEnumerable<UnidadMedidaModelo>>(objetoRespuesta) as List<UnidadMedidaModelo>;
+                UnidadesMedidaExistentes = new ObservableCollection<UnidadMedidaModelo>(unidadesMedidaAlmacenamiento);
+            }
+            //return response.
         }
     }
 }

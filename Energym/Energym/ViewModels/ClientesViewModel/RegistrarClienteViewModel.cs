@@ -18,7 +18,7 @@ namespace Energym.ViewModels.ClientesViewModel
         {
             RegistrarClienteCommand = new Command(async () => await RegistrarCliente());
             CancelarCommand = new Command(CancelarRegistroCliente);
-            CargarClientes();
+            CargarClientes().Wait();
         }
         public List<Cliente> Clientes { get; set; }
         public Command RegistrarClienteCommand { get; } 
