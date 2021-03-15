@@ -1,4 +1,5 @@
-﻿using Energym.Models;
+﻿using Energym.ApiRoutes;
+using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -58,7 +59,7 @@ namespace Energym.ViewModels
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("http://157.230.13.243/UnidadesMedida");
+            var response = await client.GetAsync(Routes.UnidadesMedida);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
