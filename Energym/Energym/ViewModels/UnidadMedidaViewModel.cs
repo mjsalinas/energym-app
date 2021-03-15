@@ -1,7 +1,10 @@
-﻿using Energym.Models;
+﻿using Energym.ApiRoutes;
+using Energym.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -37,6 +40,16 @@ namespace Energym.ViewModels
         }
         async Task RegistrarUnidadMedida()
         {
+            UnidadMedidaModelo nuevaUnidadMedida = new UnidadMedidaModelo()
+            {
+               UnidadMedida = UnidadMedida,
+               RegistroOculto = 0
+            };
+            var json = JsonConvert.SerializeObject(nuevaUnidadMedida);
+            var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+
+            var response = await client.PostAsync(Routes.UnidadesMedida, registroNuevo);   //llamada a servicios
 
         }
         void CancelarRegistroUnidadMedida()
