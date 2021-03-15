@@ -19,14 +19,8 @@ namespace Energym.Views
             InitializeComponent();
         }
 
-        private void btnAceptar_Clicked(object sender, EventArgs e)
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
-        }
-
-        private void btnCancelar_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Energym.ViewModels
             HttpClient client = new HttpClient();
 
             var response = await client.PostAsync(Routes.UnidadesMedida, registroNuevo);   //llamada a servicios
-
+            CargarUnidadesMedidaTask().Wait();
         }
         void CancelarRegistroUnidadMedida()
         {

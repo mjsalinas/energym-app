@@ -24,11 +24,22 @@ namespace Energym.ViewModels
         public Command ModificarUnidadMedidaCommand { get; }
         public Command CancelarCommand { get; }
 
+
         public event PropertyChangedEventHandler PropertyChanged;
         ObservableCollection<UnidadMedidaModelo> unidadesMedidaExistentes;
         UnidadMedidaModelo unidadMedidaSeleccionada;
+        bool estaHabilitado;
         public Task CargarUnidadesMedida { get; private set; }
 
+        public bool EstaHabilitado
+        {
+            get { return estaHabilitado; }
+            set
+            {
+                estaHabilitado = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EstaHabilitado"));
+            }
+        }
         public ObservableCollection<UnidadMedidaModelo> UnidadesMedidaExistentes
         {
             get { return unidadesMedidaExistentes; }
@@ -47,12 +58,23 @@ namespace Energym.ViewModels
         }
         async Task ModificarUnidadMedida()
         {
-        
+            UnidadMedidaModelo nuevaUnidadMedida = new UnidadMedidaModelo()
+            {
+                IdUnidadMedida = UnidadMedidaSeleccionada.IdUnidadMedida,
+                UnidadMedida = UnidadMedidaSeleccionada.UnidadMedida,
+                RegistroOculto = (byte?)(EstaHabilitado == true ? 0 : 1)
+            };
+            var json = JsonConvert.SerializeObject(nuevaUnidadMedida);
+            var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+
+            var response = await client.PutAsync(Routes.UnidadesMedida, registroNuevo);   //llamada a servicios
         }
 
         void CancelarModificarUnidadMedida()
         {
-
+            //CargarUnidadesMedidaTask().Wait();
+            UnidadMedidaSeleccionada = !(UnidadesMedidaExistentes == null) && UnidadesMedidaExistentes.Count > 0 ? UnidadesMedidaExistentes[0] : UnidadMedidaSeleccionada;
         }
 
         async Task CargarUnidadesMedidaTask()
@@ -67,6 +89,14 @@ namespace Energym.ViewModels
                 UnidadesMedidaExistentes = new ObservableCollection<UnidadMedidaModelo>(unidadesMedidaAlmacenamiento);
             }
             //return response.
+            UnidadMedidaSeleccionada = !(UnidadesMedidaExistentes == null) && UnidadesMedidaExistentes.Count > 0 ? UnidadesMedidaExistentes[0] : UnidadMedidaSeleccionada;
+            EstaHabilitado = !(UnidadMedidaSeleccionada.RegistroOculto == null) ? UnidadMedidaSeleccionada.RegistroOculto == 0 ? true : false : false;
+        }
+
+        public void SeleccionarUnidadMedida(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null) return;
+            UnidadMedidaSeleccionada = (UnidadMedidaModelo)e.SelectedItem;
         }
     }
 }
