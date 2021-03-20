@@ -21,7 +21,7 @@ namespace Energym.Views
 
         private async void btnPag4_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TipoPlanPage());
+            await Navigation.PushAsync(new TipoPlanPage2());
         }
 
         private async void btnCamposSeguimiento(object sender, EventArgs e)
@@ -40,7 +40,11 @@ namespace Energym.Views
         {
             await Navigation.PushAsync(new UnidadMedidaPage());
         }
+        private async void btnPag5_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TipoPlanPage());
 
+        }
     }
 
         

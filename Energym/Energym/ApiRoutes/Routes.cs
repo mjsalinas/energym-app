@@ -7,9 +7,11 @@ namespace Energym.ApiRoutes
     static class Routes
     {
         //prod url
-        //public static string ApiUrl = "http://157.230.13.243/";
+        public static string ApiUrl = "http://157.230.13.243/";
         //uat url
-        public static string ApiUrl = "http://157.230.13.243:81/";
+        //public static string ApiUrl = "http://157.230.13.243:81/";
+        //local
+        //public static string ApiUrl = "https://localhost:44349/";
         public static string UnidadesMedida
         {
             get { return ApiUrl + "UnidadesMedida"; }

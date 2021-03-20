@@ -1,7 +1,9 @@
-﻿using Energym.Models;
+﻿using Energym.ApiRoutes;
+using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Text;
@@ -16,40 +18,51 @@ namespace Energym.ViewModels
         {
             ModificarTipoPlanCommand = new Command(async () => await ModificarTipoPlan());
             CancelarCommand = new Command(CancelarModificarTipoPlan);
-        }
+            CargarTiposDePlan = CargarTiposDePlanTask();
 
+        }
+        public Task CargarTiposDePlan { get; private set; }
+
+        ObservableCollection<TipoPlan> planesExistentes;
+        TipoPlan planSeleccionado;
+
+        public ObservableCollection<TipoPlan> TipoPlanes { get; set; }
         public Command ModificarTipoPlanCommand { get; }
         public Command CancelarCommand { get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        List<string> tipoPlanesExistentes;
-        string nombre = "Individual";
+        string nombre;
         int integrantes;
         decimal costoPlan;
 
-        public List<string> TipoPlanesExistentes
+        public ObservableCollection<TipoPlan> TipoPlanesExistentes
         {
 
-            get { return tipoPlanesExistentes; }
-            set { tipoPlanesExistentes = value; }
+            get { return planesExistentes; }
+            set {
+                planesExistentes = value; 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TipoPlanesExistentes"));
+
+            }
         }
-        public string Nombre
+      
+        public string NombrePlan
         {
             get { return nombre; }
             set
             {
                 nombre = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Nombre"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NombrePlan"));
             }
         }
 
-        public int Integrantes
+        public int NoIntegrantes
         {
             get { return integrantes; }
             set
             {
                 integrantes = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Integrantes"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NoIntegrantes"));
             }
         }
         public decimal CostoPlan
@@ -62,16 +75,58 @@ namespace Energym.ViewModels
 
             }
         }
-
+        public TipoPlan PlanSeleccionado
+        {
+            get { return planSeleccionado; }
+            set
+            {
+                planSeleccionado = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlanSeleccionado"));
+            }
+        }
+        public ObservableCollection<TipoPlan> PlanesExistentes
+        {
+            get { return planesExistentes; }
+            set
+            {
+                planesExistentes = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlanesExistentes"));
+            }
+        }
         async Task ModificarTipoPlan()
         {
-}
+            TipoPlan nuevoTipoPlan = new TipoPlan()
+            {
+                NombrePlan = NombrePlan,
+                NoIntegrantes = NoIntegrantes,
+                CostoPlan = CostoPlan
+            };
+            //llamada a servicios
+            var json = JsonConvert.SerializeObject(nuevoTipoPlan);
+            var registroNuevo = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+
+            var response = await client.PutAsync(Routes.TipoPlan, registroNuevo);
+        }
 
         void CancelarModificarTipoPlan()
         {
 
         }
+        async Task CargarTiposDePlanTask()
+        {
+            HttpClient client = new HttpClient();
 
+            var response = await client.GetAsync(Routes.TipoPlan);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string objetoRespuesta = await response.Content.ReadAsStringAsync();
+                List<TipoPlan> planesAlmacenamiento = JsonConvert.DeserializeObject<IEnumerable<TipoPlan>>(objetoRespuesta) as List<TipoPlan>;
+                TipoPlanesExistentes = new ObservableCollection<TipoPlan>(planesAlmacenamiento);
+            }
+            //return response.
+        }
+      
     }
 }
  

@@ -34,6 +34,7 @@
 				<Button x:Name="btnPag2" Margin="0,10,0,0" 
                         Text="Registrar Campos de Seguimiento" 
           				Clicked="btnCamposSeguimiento" />
+                
                 <Button x:Name="btnModificar" Margin="0,10,0,0" 
                         Text="Modificar Campos de Seguimiento" 
           				Clicked="btnCamposSeguimientoModificar" />
@@ -50,7 +51,11 @@
                 <Button x:Name="btnPag4" Margin="0,10,0,0" Text="Registrar Tipos de Plan"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White"  Clicked="btnPag4_Clicked" />
-			</StackLayout>
+
+                <Button x:Name="btnPag5" Margin="0,10,0,0" Text="Modificar Tipos de Plan"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"  Clicked="btnPag5_Clicked" />
+            </StackLayout>
 			
 			
 		</ScrollView>

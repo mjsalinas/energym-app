@@ -11,7 +11,7 @@ namespace Energym.Models
         public int IdCampoSeguimiento { get; set; }
         public string CampoSeguimiento1 { get; set; }
         public int IdUnidadMedida { get; set; }
-        public bool RegistroOculto { get; set; }
+        public sbyte? RegistroOculto { get; set; }
         public string MensajeDeError { get; set; }
     }
 }

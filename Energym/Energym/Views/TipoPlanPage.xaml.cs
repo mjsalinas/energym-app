@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Energym.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace Energym.Views
         public TipoPlanPage()
         {
             InitializeComponent();
+            BindingContext = new ModificarTipoPlanViewModel();
+
         }
 
         private void btnAceptar_Clicked(object sender, EventArgs e)

@@ -3,6 +3,7 @@ using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Text;
@@ -17,16 +18,16 @@ namespace Energym.ViewModels
         {
             RegistrarTipoPlanCommand = new Command(async () => await RegistrarTipoPlan());
             CancelarCommand = new Command(CancelarRegistroTipoPlan);
-            CargarTipoPlan();
-
+            CargarTiposDePlan = CargarTiposDePlanTask();
         }
+        public Task CargarTiposDePlan { get; private set; }
+        ObservableCollection<TipoPlan> planesExistentes;
 
-        public List<TipoPlan> TipoPlanes { get; set; }
         public Command RegistrarTipoPlanCommand { get; }
         public Command CancelarCommand { get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        string nombre = "Individual";
+        string nombre = string.Empty;
         int integrantes;
         decimal costoPlan;
 
@@ -46,7 +47,15 @@ namespace Energym.ViewModels
             get { return costoPlan; }
             set { costoPlan = value; }
         }
-
+        public ObservableCollection<TipoPlan> PlanesExistentes
+        {
+            get { return planesExistentes; }
+            set
+            {
+                planesExistentes = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlanesExistentes"));
+            }
+        }
         async Task RegistrarTipoPlan()
         {
             // asignacion de campos y data a mandar a servicios
@@ -62,6 +71,7 @@ namespace Energym.ViewModels
             HttpClient client = new HttpClient();
 
             var response = await client.PostAsync(Routes.TipoPlan, registroNuevo);
+
         }
 
         void CancelarRegistroTipoPlan()
@@ -69,7 +79,7 @@ namespace Energym.ViewModels
             Nombre = string.Empty;
         }
 
-        async Task CargarTipoPlan()
+        async Task CargarTiposDePlanTask()
         {
             HttpClient client = new HttpClient();
 
@@ -77,7 +87,8 @@ namespace Energym.ViewModels
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
-                TipoPlanes = JsonConvert.DeserializeObject<IEnumerable<TipoPlan>>(objetoRespuesta) as List<TipoPlan>;
+                List<TipoPlan> planesAlmacenamiento = JsonConvert.DeserializeObject<IEnumerable<TipoPlan>>(objetoRespuesta) as List<TipoPlan>;
+                PlanesExistentes = new ObservableCollection<TipoPlan>(planesAlmacenamiento);
             }
             //return response.
         }

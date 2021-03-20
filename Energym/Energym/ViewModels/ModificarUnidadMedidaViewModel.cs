@@ -73,7 +73,6 @@ namespace Energym.ViewModels
 
         void CancelarModificarUnidadMedida()
         {
-            //CargarUnidadesMedidaTask().Wait();
             UnidadMedidaSeleccionada = !(UnidadesMedidaExistentes == null) && UnidadesMedidaExistentes.Count > 0 ? UnidadesMedidaExistentes[0] : UnidadMedidaSeleccionada;
         }
 

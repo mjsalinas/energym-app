@@ -21,30 +21,42 @@ namespace Energym.ViewModels
             RegistraCampoSeguimientoCommand = new Command(async () => await RegistrarCampoSeguimiento());
             CancelarCommand = new Command(CancelarRegistroCampoSeguimiento);
             CargarCampoSeguimiento = CargarCampoSeguimientoTask();
+            CargarUnidadesMedida = CargarUnidadesMedidaTask();
         }
 
+        public Task CargarUnidadesMedida { get; private set; }
+        public Task CargarCampoSeguimiento { get; private set; }
         public Command RegistraCampoSeguimientoCommand { get; }
         public Command CancelarCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        List<UnidadMedidaModelo> unidadesMedida { get; set; }
-
-        List<CampoSeguimiento> camposSeguimientoExistentes;
-        string campoSeguimientoDescripcion;
+        ObservableCollection<UnidadMedidaModelo> unidadesMedidaExistentes { get; set; }
+        ObservableCollection<CampoSeguimiento> camposSeguimientoExistentes;
         UnidadMedidaModelo unidadMedida;
-
-        public List<CampoSeguimiento> CamposSeguimientoExistentes
+        CampoSeguimiento campoSeguimientoSeleccionado;
+        string camposSeguimiento;
+        public ObservableCollection<CampoSeguimiento> CamposSeguimientoExistentes
         {
             get { return camposSeguimientoExistentes; }
             set { camposSeguimientoExistentes = value; }
         }
-        public string CampoSeguimientoDescripcion
+        public ObservableCollection<UnidadMedidaModelo> UnidadesMedidaExistentes
         {
-            get { return campoSeguimientoDescripcion; }
+            get { return unidadesMedidaExistentes; }
             set
             {
-                campoSeguimientoDescripcion = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
+                unidadesMedidaExistentes = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UnidadesMedidaExistentes"));
+            }
+        }
+
+        public CampoSeguimiento CampoSeguimientoSeleccionado
+        {
+            get { return campoSeguimientoSeleccionado; }
+            set
+            {
+                campoSeguimientoSeleccionado = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CampoSeguimientoSeleccionado"));
             }
         }
         public UnidadMedidaModelo UnidadMedidaSeleccionada
@@ -57,23 +69,22 @@ namespace Energym.ViewModels
             }
 
         }
-        public List<UnidadMedidaModelo> UnidadesMedida
+        public string CamposSeguimiento
         {
-            get { return unidadesMedida; }
+            get { return camposSeguimiento; }
             set
             {
-                unidadesMedida = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UnidadesMedida"));
+                camposSeguimiento = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
             }
         }
-
-
         async Task RegistrarCampoSeguimiento()
         {
             CampoSeguimiento NuevoCampoSeguimiento = new CampoSeguimiento()
             {
-                CampoSeguimiento1 = campoSeguimientoDescripcion,
+                CampoSeguimiento1 = camposSeguimiento, 
                 IdUnidadMedida = UnidadMedidaSeleccionada.IdUnidadMedida,
+                RegistroOculto = 0,
             };
 
             var json = JsonConvert.SerializeObject(NuevoCampoSeguimiento);
@@ -81,17 +92,11 @@ namespace Energym.ViewModels
             HttpClient client = new HttpClient();
 
             var response = await client.PostAsync(Routes.Cliente, registroNuevo);
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                await CargarCampoSeguimientoTask();
-            }
         }
         void CancelarRegistroCampoSeguimiento()
         {
-            CampoSeguimientoDescripcion = string.Empty;
         }
 
-        public Task CargarCampoSeguimiento { get; private set; }
         private async Task CargarCampoSeguimientoTask()
         {
             HttpClient client = new HttpClient();
@@ -100,7 +105,8 @@ namespace Energym.ViewModels
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
-                CamposSeguimientoExistentes = JsonConvert.DeserializeObject<IEnumerable<CampoSeguimiento>>(objetoRespuesta) as List<CampoSeguimiento>;
+                List<CampoSeguimiento> campoSeguimientoAlmacenamiento = JsonConvert.DeserializeObject<IEnumerable<CampoSeguimiento>>(objetoRespuesta) as List<CampoSeguimiento>;
+                CamposSeguimientoExistentes = new ObservableCollection<CampoSeguimiento>(campoSeguimientoAlmacenamiento);
             }
             //return response.
         }
@@ -112,7 +118,8 @@ namespace Energym.ViewModels
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
-                UnidadesMedida = JsonConvert.DeserializeObject<IEnumerable<UnidadMedidaModelo>>(objetoRespuesta) as List<UnidadMedidaModelo>;
+                List<UnidadMedidaModelo> unidadesMedidaAlmacenamiento = JsonConvert.DeserializeObject<IEnumerable<UnidadMedidaModelo>>(objetoRespuesta) as List<UnidadMedidaModelo>;
+                UnidadesMedidaExistentes = new ObservableCollection<UnidadMedidaModelo>(unidadesMedidaAlmacenamiento);
             }
             //return response.
         }

@@ -3,6 +3,7 @@ using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Text;
@@ -17,61 +18,59 @@ namespace Energym.ViewModels
         {
             ModificaCampoSeguimientoCommand = new Command(async () => await ModificarCampoSeguimiento());
             CancelarCommand = new Command(CancelarModificarCampoSeguimiento);
+            CargarUnidadesMedida = CargarUnidadesMedidaTask();
         }
         public Command ModificaCampoSeguimientoCommand { get; }
         public Command CancelarCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public Task CargarUnidadesMedida { get; private set; }
+        ObservableCollection<UnidadMedidaModelo> unidadesMedidaExistentes;
+        ObservableCollection<CampoSeguimiento> camposSeguimientoExistentes;
+        bool estaHabilitado;
+        CampoSeguimiento campoSeguimientoSeleccionado;
 
-        List<CampoSeguimiento> camposSeguimientoExistentes;
-        string campoSeguimientoDescripcion;
-        UnidadMedidaModelo unidadMedida;
-        bool registroActivo;
-
-
-        public List<CampoSeguimiento> CamposSeguimientoExistentes
+        public ObservableCollection<UnidadMedidaModelo> UnidadesMedidaExistentes
+        {
+            get { return unidadesMedidaExistentes; }
+            set
+            {
+                unidadesMedidaExistentes = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UnidadesMedidaExistentes"));
+            }
+        }
+        public ObservableCollection<CampoSeguimiento> CamposSeguimientoExistentes
         {
             get { return camposSeguimientoExistentes; }
             set { camposSeguimientoExistentes = value; }
         }
-
-        public string CampoSeguimientoDescripcion
+        public CampoSeguimiento CampoSeguimientoSeleccionado
         {
-            get { return campoSeguimientoDescripcion; }
+            get { return campoSeguimientoSeleccionado; }
             set
             {
-                campoSeguimientoDescripcion = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
+                campoSeguimientoSeleccionado = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CampoSeguimientoSeleccionado"));
             }
         }
-
-        public UnidadMedidaModelo UnidadMedida
+        public bool EstaHabilitado
         {
-            get { return unidadMedida; }
+            get { return estaHabilitado; }
             set
             {
-                unidadMedida = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
-            }
-        }
-       public bool RegistroActivo
-        {
-            get { return registroActivo; }
-            set
-            {
-                RegistroActivo = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CamposSeguimiento"));
+                estaHabilitado = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EstaHabilitado"));
             }
         }
         async Task ModificarCampoSeguimiento()
         {
             CampoSeguimiento NuevoCampoSeguimiento = new CampoSeguimiento()
             {
-                CampoSeguimiento1 = campoSeguimientoDescripcion,
-                IdUnidadMedida = unidadMedida.IdUnidadMedida,
-                RegistroOculto = registroActivo,
+                IdCampoSeguimiento = CampoSeguimientoSeleccionado.IdCampoSeguimiento,
+                CampoSeguimiento1 = CampoSeguimientoSeleccionado.CampoSeguimiento1,
+                IdUnidadMedida = CampoSeguimientoSeleccionado.IdUnidadMedida,
+                RegistroOculto = (sbyte?)(EstaHabilitado == true ? 0 : 1)
             };
-
             var json = JsonConvert.SerializeObject(NuevoCampoSeguimiento);
             var registroMoficicado = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
@@ -85,7 +84,6 @@ namespace Energym.ViewModels
         }
         void CancelarModificarCampoSeguimiento()
         {
-            CampoSeguimientoDescripcion = string.Empty;
         }
         async Task CargarCampoSeguimiento()
         {
@@ -95,7 +93,21 @@ namespace Energym.ViewModels
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
-                CamposSeguimientoExistentes = JsonConvert.DeserializeObject<IEnumerable<CampoSeguimiento>>(objetoRespuesta) as List<CampoSeguimiento>;
+                List<CampoSeguimiento>campoSeguimientoAlmacenamiento = JsonConvert.DeserializeObject<IEnumerable<CampoSeguimiento>>(objetoRespuesta) as List<CampoSeguimiento>;
+                CamposSeguimientoExistentes = new ObservableCollection<CampoSeguimiento>(campoSeguimientoAlmacenamiento);
+            }
+            //return response.
+        }
+        async Task CargarUnidadesMedidaTask()
+        {
+            HttpClient client = new HttpClient();
+
+            var response = await client.GetAsync(Routes.UnidadesMedida);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string objetoRespuesta = await response.Content.ReadAsStringAsync();
+                List<UnidadMedidaModelo> unidadesMedidaAlmacenamiento = JsonConvert.DeserializeObject<IEnumerable<UnidadMedidaModelo>>(objetoRespuesta) as List<UnidadMedidaModelo>;
+                UnidadesMedidaExistentes = new ObservableCollection<UnidadMedidaModelo>(unidadesMedidaAlmacenamiento);
             }
             //return response.
         }

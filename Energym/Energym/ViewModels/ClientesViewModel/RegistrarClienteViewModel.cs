@@ -3,6 +3,7 @@ using Energym.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Text;
@@ -18,13 +19,26 @@ namespace Energym.ViewModels.ClientesViewModel
         {
             RegistrarClienteCommand = new Command(async () => await RegistrarCliente());
             CancelarCommand = new Command(CancelarRegistroCliente);
-            CargarClientes().Wait();
+            CargarTiposDePlan = CargarTiposDePlanTask();
+            CargarClientes = CargarClientesTask();
         }
-        public List<Cliente> Clientes { get; set; }
+
+        #region Definiciones
+        public Task CargarTiposDePlan { get; private set; }
+        public Task CargarClientes { get; private set; }
         public Command RegistrarClienteCommand { get; } 
         public Command CancelarCommand { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
+        ObservableCollection<TipoPlan> planesExistentes;
+
+        ObservableCollection<Cliente> clientesExistentes;
+
+        TipoPlan planSeleccionado;
+        #endregion
+
+        #region Propiedades 
 
         string nombre;
         string numeroTelefono = string.Empty;
@@ -34,10 +48,13 @@ namespace Energym.ViewModels.ClientesViewModel
         sbyte activo = 1;
         string estadoCliente = string.Empty;
         int idGrupo;
+
         public string Nombre
         {
             get { return nombre; }
-            set { nombre = value; }
+            set { nombre = value; 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Nombre"));
+            }
         }
         public string NumeroTelefono
         {
@@ -46,31 +63,75 @@ namespace Energym.ViewModels.ClientesViewModel
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumeroTelefono"));
             }
         }
-        public DateTime FechaIngreso
-        {
-            get { return fechaIngreso; }
-            set { fechaIngreso = value; }
-        }
         public string Correo
         {
             get { return correo; }
-            set { correo = value; }
+            set { correo = value; 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Correo"));
+            }
         }
         public int TipoPlan
         {
             get { return tipoPlan; }
-            set { tipoPlan = value; }
+            set { tipoPlan = value; 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TipoPlan"));
+            }
         }
         public sbyte Activo
         {
             get { return activo; }
-            set { activo = value; }
+            set { activo = value; 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Activo"));
+            }
         }
         public string EstadoCliente
         {
             get { return estadoCliente; }
-            set { estadoCliente = value; }
+            set { estadoCliente = value; 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EstadoCliente"));
+            }
         }
+        public int NumGrupo
+        {
+            get { return idGrupo; }
+            set
+            {
+                idGrupo = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumGrupo"));
+            }
+        }
+        public ObservableCollection<TipoPlan> PlanesExistentes
+        {
+            get { return planesExistentes; }
+            set
+            {
+                planesExistentes = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlanesExistentes"));
+            }
+        }
+        public ObservableCollection<Cliente> ClientesExistentes
+        {
+            get { return clientesExistentes; }
+            set
+            {
+                clientesExistentes = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ClientesExistentes"));
+            }
+        }
+        public TipoPlan PlanSeleccionado
+        {
+            get { return planSeleccionado; }
+            set
+            {
+                planSeleccionado = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlanSeleccionado"));
+            }
+
+        }
+        #endregion
+
+        #region Metodos 
+
         async Task RegistrarCliente ()
         {
             // asignacion de campos y data a mandar a servicios
@@ -78,10 +139,10 @@ namespace Energym.ViewModels.ClientesViewModel
             {
                 Nombre = nombre,
                 NumeroTelefono = numeroTelefono,
+                FechaIngreso = fechaIngreso,
                 Correo = correo,
-                Activo = activo,
-                EstadoCliente = estadoCliente,
-                TipoPlan = tipoPlan,
+            
+                TipoPlan = PlanSeleccionado.IdPlan,
                 IdGrupo = idGrupo
             };
              var json = JsonConvert.SerializeObject(nuevoCliente);
@@ -89,14 +150,15 @@ namespace Energym.ViewModels.ClientesViewModel
             HttpClient client = new HttpClient();
         
             var response = await client.PostAsync(Routes.Cliente, registroNuevo);   //llamada a servicios
-        
         }
         void CancelarRegistroCliente()
         {
             Nombre = string.Empty;
             NumeroTelefono = string.Empty;
+            Correo = string.Empty;
+
         }
-        async Task CargarClientes()
+        async Task CargarClientesTask()
         {
             HttpClient client = new HttpClient();
 
@@ -104,9 +166,25 @@ namespace Energym.ViewModels.ClientesViewModel
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string objetoRespuesta = await response.Content.ReadAsStringAsync();
-                Clientes = JsonConvert.DeserializeObject<IEnumerable<Cliente>>(objetoRespuesta) as List<Cliente>;
+                List<Cliente> clientes = JsonConvert.DeserializeObject<IEnumerable<Cliente>>(objetoRespuesta) as List<Cliente>;
+                ClientesExistentes = new ObservableCollection<Cliente>(clientes);
             }
             //return response.
         }
+
+        async Task CargarTiposDePlanTask()
+        {
+            HttpClient client = new HttpClient();
+
+            var response = await client.GetAsync(Routes.TipoPlan);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string objetoRespuesta = await response.Content.ReadAsStringAsync();
+                List<TipoPlan> planesAlmacenamiento = JsonConvert.DeserializeObject<IEnumerable<TipoPlan>>(objetoRespuesta) as List<TipoPlan>;
+                PlanesExistentes = new ObservableCollection<TipoPlan>(planesAlmacenamiento);
+            }
+            //return response.
+        }
+        #endregion
     }
 }
